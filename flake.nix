@@ -2,9 +2,9 @@
   description = "My (danielfullmer's) personal robotnix configurations";
 
   inputs.robotnix.url = "github:danielfullmer/robotnix";
-  #inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = { self, robotnix }: let
+  outputs = { self, robotnix, nixpkgs }: let
     myDomain = "daniel.fullmer.me";
     common = { config, pkgs, ... }: {
       # A _string_ of the path for the key store.
@@ -80,11 +80,14 @@
     });
 
     packages.x86_64-linux = {
-#      otaDir = nixpkgs.legacyPkgs.x86_64-linux.symlinkJoin (with self; [
-#        #marlin
-#        crosshatch
-#        sunfish
-#      ]);
+      otaDir = nixpkgs.legacyPackages.x86_64-linux.symlinkJoin {
+        name = "robotnix-ota";
+        paths = (with self.robotnixConfigurations; map (c: c.otaDir) [
+          #marlin
+          crosshatch
+          sunfish
+        ]);
+      };
     };
   };
 }
