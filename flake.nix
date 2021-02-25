@@ -6,7 +6,7 @@
 
   outputs = { self, robotnix, nixpkgs }: let
     myDomain = "daniel.fullmer.me";
-    common = { config, pkgs, ... }: {
+    common = { config, pkgs, lib, ... }: {
       # A _string_ of the path for the key store.
       keyStorePath = "/var/secrets/android-keys";
       signing.enable = true;
@@ -27,8 +27,8 @@
 
       # Can't access paths under keyStorePath in restricted mode.
       # TODO: User shouldn't have to figure this out themselves
-      apps.prebuilt.F-Droid.fingerprint = "440B1449D705B85191E427C1ACF245B48854CACF1240AA358F15E4D022BA4A7F";
-      apps.prebuilt.Auditor.fingerprint = "30E3A2C19024A208DF0D4FE0633AE3663B22AD4868F446B1AC36D526CA8E95FA";
+      apps.prebuilt.F-Droid.fingerprint = lib.mkIf config.signing.enable "440B1449D705B85191E427C1ACF245B48854CACF1240AA358F15E4D022BA4A7F";
+      apps.prebuilt.Auditor.fingerprint = lib.mkIf config.signing.enable "30E3A2C19024A208DF0D4FE0633AE3663B22AD4868F446B1AC36D526CA8E95FA";
 
       hosts = pkgs.fetchFromGitHub {
         owner = "StevenBlack";
@@ -58,11 +58,12 @@
       }) ];
     };
   in {
-    robotnixConfigurations."marlin" = robotnix.lib.robotnixSystem ({ config, pkgs, ... }: {
+    robotnixConfigurations."marlin" = robotnix.lib.robotnixSystem ({ config, pkgs, lib, ... }: {
       imports = [ common ];
       device = "marlin";
       flavor = "vanilla";
       androidVersion = 10;
+      signing.avb.verityCert = ./marlin-verity.x509.pem;
     });
 
     robotnixConfigurations."crosshatch" = robotnix.lib.robotnixSystem ({ config, pkgs, ... }: {
