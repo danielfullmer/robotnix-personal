@@ -54,7 +54,7 @@
       };
 
       nixpkgs.overlays = [ (self: super: {
-
+        fetchgit = self.callPackage ./fetchgit {};
       }) ];
     };
   in {
