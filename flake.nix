@@ -8,7 +8,7 @@
     myDomain = "daniel.fullmer.me";
     common = { config, pkgs, lib, ... }: {
       # A _string_ of the path for the key store.
-      keyStorePath = "/var/secrets/android-keys";
+      signing.keyStorePath = "/var/secrets/android-keys";
       signing.enable = true;
 
       ccache.enable = true;
