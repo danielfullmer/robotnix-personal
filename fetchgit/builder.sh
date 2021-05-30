@@ -12,8 +12,6 @@ git config --global url."/mnt/cache/mirror/".insteadOf "https://android.googleso
 git config --global url."/mnt/cache/lineageos/LineageOS/".insteadOf "https://github.com/LineageOS/"
 git config --global url."/mnt/cache/muppets/TheMuppets/".insteadOf "https://github.com/TheMuppets/"
 
-echo test
-
 $SHELL $fetcher --builder --url "$url" --out "$out" --rev "$rev" \
   ${leaveDotGit:+--leave-dotGit} \
   ${deepClone:+--deepClone} \
