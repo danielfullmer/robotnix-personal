@@ -2,11 +2,13 @@
   description = "My (danielfullmer's) personal robotnix configurations";
 
   inputs.robotnix.url = "github:danielfullmer/robotnix";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.follows = "robotnix/nixpkgs";
 
   outputs = { self, robotnix, nixpkgs }: let
     myDomain = "daniel.fullmer.me";
     common = { config, pkgs, lib, ... }: {
+      imports = [ self.robotnixModules.google ];
+
       # A _string_ of the path for the key store.
       signing.keyStorePath = "/var/secrets/android-keys";
       signing.enable = true;
@@ -79,6 +81,8 @@
       flavor = "vanilla";
       signing.avb.fingerprint = "3795C68BE9F9FD2152ABBE6D3CDEAED70133F3894DE3038028E58509EABAEE74";
     });
+
+    robotnixModules.google = import ./google.nix;
 
     packages.x86_64-linux = {
       otaDir = nixpkgs.legacyPackages.x86_64-linux.symlinkJoin {
