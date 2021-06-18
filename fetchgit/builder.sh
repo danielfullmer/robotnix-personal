@@ -14,6 +14,7 @@ git config --global url."/mnt/cache/muppets/TheMuppets/".insteadOf "https://gith
 
 $SHELL $fetcher --builder --url "$url" --out "$out" --rev "$rev" \
   ${leaveDotGit:+--leave-dotGit} \
+  ${fetchLFS:+--fetch-lfs} \
   ${deepClone:+--deepClone} \
   ${fetchSubmodules:+--fetch-submodules} \
   ${branchName:+--branch-name "$branchName"}
