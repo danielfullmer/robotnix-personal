@@ -1,8 +1,0 @@
-[url "/mnt/cache/mirror/"]
-    insteadOf = "https://android.googlesource.com/"
-
-[url "/mnt/cache/lineageos/LineageOS/"]
-    insteadOf = "https://github.com/LineageOS/"
-
-[url "/mnt/cache/muppets/TheMuppets/"]
-    insteadOf = "https://github.com/TheMuppets/"
