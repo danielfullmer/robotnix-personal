@@ -7,7 +7,7 @@
   outputs = { self, robotnix, nixpkgs }: let
     myDomain = "daniel.fullmer.me";
     common = { config, pkgs, lib, ... }: {
-      imports = [ self.robotnixModules.google ];
+      #imports = [ self.robotnixModules.google ];
 
       # A _string_ of the path for the key store.
       signing.keyStorePath = "/var/secrets/android-keys";
@@ -31,6 +31,8 @@
       # TODO: User shouldn't have to figure this out themselves
       apps.prebuilt.F-Droid.fingerprint = lib.mkIf config.signing.enable "440B1449D705B85191E427C1ACF245B48854CACF1240AA358F15E4D022BA4A7F";
       apps.prebuilt.Auditor.fingerprint = lib.mkIf config.signing.enable "30E3A2C19024A208DF0D4FE0633AE3663B22AD4868F446B1AC36D526CA8E95FA";
+      apps.prebuilt.chromium.fingerprint = lib.mkIf config.signing.enable "33AAE6CE0121A499A533DD94C010BF09BA97A3B61FC2C0A0D192F6A922EA95C3";
+      apps.prebuilt.vanadium.fingerprint = lib.mkIf config.signing.enable "7B8E48EA0A4E50F08D01DD519A8F54A93489B78395ABA733EFF9BB8C53B97132";
 
       hosts = pkgs.fetchFromGitHub {
         owner = "StevenBlack";
@@ -40,7 +42,7 @@
       } + "/hosts";
 
       microg.enable = true;
-      google.fi.enable = true;
+      #google.fi.enable = true;
 
       apps.fdroid.additionalRepos = {
         playmaker = {
