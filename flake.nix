@@ -34,7 +34,12 @@
       apps.prebuilt.chromium.fingerprint = lib.mkIf config.signing.enable "33AAE6CE0121A499A533DD94C010BF09BA97A3B61FC2C0A0D192F6A922EA95C3";
       apps.prebuilt.vanadium.fingerprint = lib.mkIf config.signing.enable "7B8E48EA0A4E50F08D01DD519A8F54A93489B78395ABA733EFF9BB8C53B97132";
 
-      hosts = "${pkgs.adblock}/etc/hosts";
+      hosts = pkgs.fetchFromGitHub {
+        owner = "StevenBlack";
+        repo = "hosts";
+        rev = "3.4.2";
+        sha256 = "sha256-+Yz5/UOXu+/5G1cfm0bhBaXQlccSowlACWhKSv0BgA8=";
+      } + "/hosts";
 
       microg.enable = true;
       #google.fi.enable = true;
