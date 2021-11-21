@@ -71,6 +71,7 @@
       device = "crosshatch";
       flavor = "grapheneos";
       signing.avb.fingerprint = "F7B29168803BA73C31641D2770C2A84D4FF68C157F0B8BFE0BDC1958D4310491";
+      envVars.PLATFORM_SECURITY_PATCH = "2021-11-05"; # I messed up on an earlier update and PLATFORM_SECURITY_PATCH was 2021-11-05 instead of 2021-11-01
     });
 
     robotnixConfigurations."sunfish" = robotnix.lib.robotnixSystem ({ config, pkgs, ... }: {
