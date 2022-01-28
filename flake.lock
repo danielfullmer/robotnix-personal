@@ -106,11 +106,11 @@
         "nixpkgsUnstable": "nixpkgsUnstable"
       },
       "locked": {
-        "lastModified": 1639534518,
-        "narHash": "sha256-bqYAwtgCcQXPxlesZL/iJHzlOsQ8ZJlvl1IyZe1nEtc=",
+        "lastModified": 1643338212,
+        "narHash": "sha256-RXl+jBV+he6C9vxRL5fNxEEy0K9j70rlnMaNEPymshI=",
         "owner": "danielfullmer",
         "repo": "robotnix",
-        "rev": "e66515e2ae904e4ce6764374ff2de9874d5c4257",
+        "rev": "135f63c5d153e5644f00118de10d39dd99b6f076",
         "type": "github"
       },
       "original": {
